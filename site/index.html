@@ -1,5 +1,18 @@
-<title>Sotto</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sotto: an open toolkit for VBAN network audio</title>
+<meta name="description" content="Sotto: a zero-allocation C SDK for VBAN, virtual sound cards for Windows, macOS and Linux, an OpenWrt hub with an eBPF fast path, and secure VBAN.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230F6E56'/%3E%3Cpath d='M22 54 C32 26 42 26 50 50 S68 74 78 46' fill='none' stroke='%23fff' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M28 78 H72' stroke='%239FE1CB' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="alternate" hreflang="en" href="https://adilhtepe.github.io/sotto/">
+<link rel="alternate" hreflang="tr" href="https://adilhtepe.github.io/sotto/?lang=tr">
+<meta property="og:title" content="Sotto: an open toolkit for VBAN network audio">
+<meta property="og:description" content="C99 SDK, virtual sound cards, OpenWrt eBPF hub, secure VBAN.">
+<meta property="og:image" content="https://raw.githubusercontent.com/adilhtepe/sotto/main/brand/sotto-social-1280x640.png">
+<meta property="og:url" content="https://adilhtepe.github.io/sotto/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
@@ -150,19 +163,32 @@ footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wr
   .navlinks a:not(.btn) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; }
+.lang button { border: 0; background: transparent; color: var(--muted); font: 500 13px var(--font-body); height: 30px; min-width: 38px; padding: 0 10px; border-radius: 999px; cursor: pointer; }
+.lang button:hover { color: var(--ink); }
+.lang button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-ink); }
+.meter span:first-child { font-family: var(--font-body); }
+@media (max-width: 900px) { .navlinks { gap: 12px; } }
 </style>
 
+</head>
+<body>
 <nav>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Sotto home">
+    <a class="brand" href="#top" aria-label="Sotto home" data-i18n-aria="nav.home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#0F6E56"/><path d="M22 54 C32 26 42 26 50 50 S68 74 78 46" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M28 78 H72" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/></svg>
       Sotto
     </a>
     <div class="navlinks">
-      <a href="#parts">What's inside</a>
-      <a href="#secure">Secure VBAN</a>
-      <a href="#numbers">Numbers</a>
-      <a class="btn btn-primary" href="#start">Get started</a>
+      <a href="#parts" data-i18n="nav.parts">What's inside</a>
+      <a href="#secure" data-i18n="nav.secure">Secure VBAN</a>
+      <a href="#numbers" data-i18n="nav.numbers">Numbers</a>
+      <a href="https://github.com/adilhtepe/sotto">GitHub</a>
+      <div class="lang" role="group" aria-label="Language" data-i18n-aria="nav.lang">
+        <button type="button" data-lang="en" lang="en">EN</button>
+        <button type="button" data-lang="tr" lang="tr">TR</button>
+      </div>
+      <a class="btn btn-primary" href="#start" data-i18n="cta.start">Get started</a>
     </div>
   </div>
 </nav>
@@ -171,16 +197,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wr
   <section class="hero">
     <div class="wrap">
       <div>
-        <h1>VBAN audio, <em>sotto voce.</em></h1>
-        <p class="lead">A zero-allocation C toolkit, an OpenWrt hub and a Linux sound card for VBAN. Low latency, encrypted when you want it.</p>
+        <h1 data-i18n="hero.title">VBAN audio, <em>sotto voce.</em></h1>
+        <p class="lead" data-i18n="hero.lead">An open toolkit for VBAN network audio: a zero-allocation C SDK, virtual sound cards for Windows, macOS and Linux, and an OpenWrt hub with an eBPF fast path. Encrypted when you want it, even across the internet.</p>
         <div class="ctas">
-          <a class="btn btn-primary" href="#start">Get started</a>
-          <a class="btn btn-ghost" href="#numbers">See the numbers</a>
+          <a class="btn btn-primary" href="#start" data-i18n="cta.start">Get started</a>
+          <a class="btn btn-ghost" href="https://github.com/adilhtepe/sotto" data-i18n="cta.github">View on GitHub</a>
         </div>
       </div>
-      <div class="scope" role="img" aria-label="A stereo signal sliced into 64-frame VBAN packets, scrolling past">
+      <div class="scope" role="img" aria-label="A stereo signal sliced into 64-frame VBAN packets, scrolling past" data-i18n-aria="hero.scope">
         <canvas id="scope"></canvas>
-        <div class="legend"><span><b>64</b> frames per packet</span><span><b>1.33 ms</b> at 48 kHz</span><span><b>28 B</b> header</span></div>
+        <div class="legend"><span data-i18n="hero.l1"><b>64</b> frames per packet</span><span data-i18n="hero.l2"><b>1.33 ms</b> at 48 kHz</span><span data-i18n="hero.l3"><b>28 B</b> header</span></div>
       </div>
     </div>
   </section>
@@ -188,46 +214,46 @@ footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wr
   <section class="numbers" id="numbers">
     <div class="wrap">
       <div class="grid">
-        <div class="stat"><div class="v">0</div><div class="k">heap allocations, in every component of the C SDK</div></div>
-        <div class="stat"><div class="v">319 µs</div><div class="k">median trip through a two-core OpenWrt router at 24k packets/s</div></div>
-        <div class="stat"><div class="v">3.7 µs</div><div class="k">to encrypt and authenticate one 64-frame stereo packet, both ends</div></div>
+        <div class="stat"><div class="v">0</div><div class="k" data-i18n="num.k1">heap allocations, in every component of the C SDK</div></div>
+        <div class="stat"><div class="v" data-i18n="num.v2">0.81 ms</div><div class="k" data-i18n="num.k2">p99 trip through a two-core OpenWrt router at 24k packets/s, with zero loss</div></div>
+        <div class="stat"><div class="v" data-i18n="num.v3">3.7 µs</div><div class="k" data-i18n="num.k3">to encrypt and authenticate one 64-frame stereo packet, both ends</div></div>
       </div>
-      <p class="note">Measured on an ASUS RT-AX52 (MT7981, OpenWrt 25.12) and an x86-64 desktop. Methods and raw runs are in the repository.</p>
+      <p class="note" data-i18n="num.note">Measured on an ASUS RT-AX52 (MT7981, OpenWrt 25.12) and an x86-64 desktop. Methods and raw runs are in the repositories.</p>
     </div>
   </section>
 
   <section class="parts" id="parts">
     <div class="wrap">
-      <h2>Four pieces, one protocol</h2>
-      <p class="intro">Use the SDK on its own, or let the hub route streams between Voicemeeter, phones, Linux machines and microcontrollers.</p>
+      <h2 data-i18n="parts.title">One protocol, every platform</h2>
+      <p class="intro" data-i18n="parts.intro">Use the SDK on its own, or let the hub route streams between Voicemeeter, phones, computers and microcontrollers.</p>
       <div class="bento">
         <article class="cell c-sdk">
           <span class="tag">C99 SDK</span>
-          <h3>Send, receive and mix on anything with a C compiler</h3>
-          <p>Lock-free jitter buffer with clock-drift resampling, a matrix mixer, PING0 discovery and RT packets. Runs on Linux, Windows, Android, ESP32 and Arduino.</p>
-<pre class="snippet"><span class="c">// 64 frames per packet: 1.33 ms of audio at 48 kHz</span>
+          <h3 data-i18n="sdk.title">Send, receive and mix on anything with a C compiler</h3>
+          <p data-i18n="sdk.text">Lock-free jitter buffer with clock-drift resampling, a matrix mixer, PING0 discovery and RT packets. Runs on Linux, Windows, macOS, Android, ESP32 and Arduino.</p>
+<pre class="snippet"><span class="c" data-i18n="sdk.comment">// 64 frames per packet: 1.33 ms of audio at 48 kHz</span>
 vban_tx_init(&amp;tx, &amp;cfg);
 vban_tx_add_dest(&amp;tx, &amp;mixer);
 vban_tx_write_f32(&amp;tx, block, 64);</pre>
         </article>
         <article class="cell c-hub">
           <span class="tag">OpenWrt hub</span>
-          <h3>A router that routes audio</h3>
-          <p>Fan-out, renaming and volume in LuCI. A tc eBPF fast path forwards inside the kernel.</p>
-          <div class="meter" aria-label="Router CPU at 24k packets per second">
-            <div>Userspace <i style="width:100%"></i><span>75 %</span></div>
-            <div>eBPF path <i style="width:41%"></i><span>31 %</span></div>
+          <h3 data-i18n="hub.title">A router that routes audio</h3>
+          <p data-i18n="hub.text">Fan-out, renaming and volume in LuCI. A tc eBPF fast path forwards inside the kernel.</p>
+          <div class="meter" aria-label="Router CPU at 24k packets per second" data-i18n-aria="hub.meter">
+            <div><span data-i18n="hub.user">Userspace</span> <i style="width:100%"></i><span>75 %</span></div>
+            <div><span data-i18n="hub.ebpf">eBPF path</span> <i style="width:41%"></i><span>31 %</span></div>
           </div>
         </article>
         <article class="cell c-alsa">
-          <span class="tag">snd-vban</span>
-          <h3>A sound card for Linux</h3>
-          <p>An ALSA driver: aplay, arecord, PipeWire and JACK talk VBAN with no daemon. Integer-only, timed by a kernel hrtimer.</p>
+          <span class="tag" data-i18n="cards.tag">Sound cards</span>
+          <h3 data-i18n="cards.title">Virtual sound cards</h3>
+          <p data-i18n="cards.text">“Sotto Out” and “Sotto In” on Windows, macOS and Linux (ALSA and PipeWire). Pick them in any app and the audio goes over the network.</p>
         </article>
         <article class="cell c-android">
           <span class="tag">Kotlin</span>
-          <h3>Android, without the glue</h3>
-          <p>A 128 KB library for four ABIs. read() fills your audio callback straight from the jitter buffer, with no copy and no allocation.</p>
+          <h3 data-i18n="android.title">Android, without the glue</h3>
+          <p data-i18n="android.text">A 128 KB library for four ABIs. read() fills your audio callback straight from the jitter buffer, with no copy and no allocation.</p>
         </article>
       </div>
     </div>
@@ -236,42 +262,43 @@ vban_tx_write_f32(&amp;tx, block, 64);</pre>
   <section class="secure" id="secure">
     <div class="wrap">
       <div>
-        <h2>Encrypted when it matters</h2>
-        <p class="intro">Plain VBAN trusts every packet on the LAN. Secure VBAN gives each device its own key and a certificate from a CA that lives on your router.</p>
+        <h2 data-i18n="sec.title">Encrypted when it matters</h2>
+        <p class="intro" data-i18n="sec.intro">Plain VBAN trusts every packet on the LAN. Secure VBAN gives each device its own key and a certificate from a CA that lives on your router. It also carries audio across the internet, through NAT.</p>
         <div class="facts">
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><p><b>Audited crypto.</b> Monocypher, vendored unmodified. Noise XX handshake, ChaCha20-Poly1305 on every packet.</p></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 15l2 2 3-4"/></svg><p><b>Routes follow certificates.</b> A spoofed IP address gets nowhere; revoking a device ends its session at once.</p></div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10H7z"/><path d="M3 12h4M17 12h4"/></svg><p><b>Voicemeeter keeps working.</b> The hub decrypts and forwards to plain receivers, so you can secure one device at a time.</p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><p data-i18n="sec.f1"><b>Audited crypto.</b> Monocypher, vendored unmodified. Noise XX handshake, ChaCha20-Poly1305 on every packet.</p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 15l2 2 3-4"/></svg><p data-i18n="sec.f2"><b>Routes follow certificates.</b> A spoofed IP address gets nowhere; revoking a device ends its session at once.</p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10H7z"/><path d="M3 12h4M17 12h4"/></svg><p data-i18n="sec.f3"><b>Voicemeeter keeps working.</b> The hub decrypts and forwards to plain receivers, so you can secure one device at a time.</p></div>
         </div>
       </div>
-      <div class="seq" aria-label="Secure VBAN handshake and data flow">
-        <div class="lanes"><span>Device</span><span>Hub</span></div>
-        <div class="msg r"><div class="t"><code>HS1</code><span>ephemeral key</span></div><div class="arrow"></div></div>
-        <div class="msg l"><div class="t"><code>HS2</code><span>hub certificate, encrypted</span></div><div class="arrow"></div></div>
-        <div class="msg r"><div class="t"><code>HS3</code><span>device certificate, encrypted</span></div><div class="arrow"></div></div>
-        <div class="msg r data"><div class="t"><code>DATA</code><span>whole VBAN packet, 44 bytes extra</span></div><div class="arrow"></div></div>
-        <p class="foot">Keys rotate every two minutes. Replayed and tampered packets are dropped.</p>
+      <div class="seq" aria-label="Secure VBAN handshake and data flow" data-i18n-aria="sec.seq">
+        <div class="lanes"><span data-i18n="sec.device">Device</span><span>Hub</span></div>
+        <div class="msg r"><div class="t"><code>HS1</code><span data-i18n="sec.m1">ephemeral key</span></div><div class="arrow"></div></div>
+        <div class="msg l"><div class="t"><code>HS2</code><span data-i18n="sec.m2">hub certificate, encrypted</span></div><div class="arrow"></div></div>
+        <div class="msg r"><div class="t"><code>HS3</code><span data-i18n="sec.m3">device certificate, encrypted</span></div><div class="arrow"></div></div>
+        <div class="msg r data"><div class="t"><code>DATA</code><span data-i18n="sec.m4">whole VBAN packet, 44 bytes extra</span></div><div class="arrow"></div></div>
+        <p class="foot" data-i18n="sec.foot">Keys rotate every two minutes. Replayed and tampered packets are dropped.</p>
       </div>
     </div>
   </section>
 
   <section class="start" id="start">
     <div class="wrap">
-      <h2>Start with a tone</h2>
-      <p class="intro">Build the SDK, play a test tone into one terminal and listen in another. Swap the receiver for Voicemeeter or the hub when it works.</p>
+      <h2 data-i18n="start.title">Start with a tone</h2>
+      <p class="intro" data-i18n="start.intro">Build the SDK, play a test tone in one terminal and listen in another. Swap the receiver for Voicemeeter or the hub when it works.</p>
       <div class="term">
-        <div class="bar"><span class="mono">bash</span><button class="copy" id="copy" type="button">Copy</button></div>
-<pre id="cmds"><span class="c"># build</span>
+        <div class="bar"><span class="mono">bash</span><button class="copy" id="copy" type="button" data-i18n="start.copy">Copy</button></div>
+<pre id="cmds"><span class="c" data-i18n="start.c1"># get the code</span>
+<span class="p">$</span> git clone https://github.com/adilhtepe/sotto-sdk &amp;&amp; cd sotto-sdk
 <span class="p">$</span> cmake -S . -B build &amp;&amp; cmake --build build -j
-<span class="c"># listen on 6980 and play through ALSA</span>
+<span class="c" data-i18n="start.c2"># listen on 6980 and play through ALSA</span>
 <span class="p">$</span> ./build/vban_recv -n Stream1 | aplay -f S16_LE -r 48000 -c 2
-<span class="c"># in a second terminal: a 440 Hz tone, 64 frames per packet</span>
+<span class="c" data-i18n="start.c3"># in a second terminal: a 440 Hz tone, 64 frames per packet</span>
 <span class="p">$</span> ./build/vban_send -i 127.0.0.1 -n Stream1 -b 64</pre>
       </div>
       <div class="grid2">
-        <div><h3>Going secure</h3><p>vban_cert makes the CA, device keys and certificates. Add --ca, --cert and --key to send and receive.</p></div>
-        <div><h3>On the router</h3><p>deploy.sh installs the hub and its LuCI page. The Security tab creates the CA and signs devices.</p></div>
-        <div><h3>As a sound card</h3><p>Build kernel/ against your headers and load snd-vban with a destination and a stream name.</p></div>
+        <div><h3 data-i18n="start.g1t">Going secure</h3><p data-i18n="start.g1">vban_cert makes the CA, device keys and certificates. Add --ca, --cert and --key to send and receive.</p></div>
+        <div><h3 data-i18n="start.g2t">On the router</h3><p data-i18n="start.g2">deploy.sh installs the hub and its LuCI page. The Security tab creates the CA and signs devices.</p></div>
+        <div><h3 data-i18n="start.g3t">As a sound card</h3><p data-i18n="start.g3">Windows, macOS and Linux each have a driver in their own repository. Pick “Sotto Out” as the output and you are sending VBAN.</p></div>
       </div>
     </div>
   </section>
@@ -279,12 +306,112 @@ vban_tx_write_f32(&amp;tx, block, 64);</pre>
 
 <footer>
   <div class="wrap">
-    <span>Sotto. An independent implementation of the VBAN protocol.</span>
-    <span>VBAN and Voicemeeter are by VB-Audio Software.</span>
+    <span data-i18n="foot.a">Sotto. An independent, open-source implementation of the VBAN protocol.</span>
+    <span><a href="https://github.com/adilhtepe/sotto">GitHub</a> · <span data-i18n="foot.b">VBAN and Voicemeeter are by VB-Audio Software.</span></span>
   </div>
 </footer>
 
 <script>
+var TR = {
+  'meta.title': 'Sotto: VBAN ağ sesi için açık kaynak araç seti',
+  'meta.desc': 'Sotto: VBAN için bellek ayırmayan bir C SDK, Windows, macOS ve Linux için sanal ses kartları, eBPF hızlı yollu bir OpenWrt hub ve güvenli VBAN.',
+  'nav.home': 'Sotto ana sayfa',
+  'nav.parts': 'İçindekiler',
+  'nav.secure': 'Güvenli VBAN',
+  'nav.numbers': 'Rakamlar',
+  'nav.lang': 'Dil',
+  'cta.start': 'Başlayın',
+  'cta.github': 'GitHub’da inceleyin',
+  'hero.title': 'VBAN sesi, <em>sotto voce.</em>',
+  'hero.lead': 'VBAN ağ sesi için açık kaynak bir araç seti: bellek ayırmayan bir C SDK, Windows, macOS ve Linux için sanal ses kartları ve eBPF hızlı yollu bir OpenWrt hub. İstediğinizde şifreli, internet üzerinden bile.',
+  'hero.scope': 'Kayarak geçen, 64 karelik VBAN paketlerine bölünmüş stereo bir sinyal',
+  'hero.l1': 'paket başına <b>64</b> kare',
+  'hero.l2': '48 kHz’de <b>1,33 ms</b>',
+  'hero.l3': '<b>28 B</b> başlık',
+  'num.k1': 'heap bellek ayırma; C SDK’nın hiçbir bileşeninde',
+  'num.v2': '0,81 ms',
+  'num.k2': 'saniyede 24 bin pakette, iki çekirdekli bir OpenWrt router’dan p99 geçiş süresi; sıfır kayıpla',
+  'num.v3': '3,7 µs',
+  'num.k3': '64 karelik bir stereo paketi şifreleyip doğrulamak için, iki uç toplamı',
+  'num.note': 'ASUS RT-AX52 (MT7981, OpenWrt 25.12) ve bir x86-64 masaüstünde ölçüldü. Yöntemler ve ham ölçümler repolarda.',
+  'parts.title': 'Tek protokol, her platform',
+  'parts.intro': 'SDK’yı tek başına kullanın ya da akışları hub’ın Voicemeeter, telefonlar, bilgisayarlar ve mikrodenetleyiciler arasında yönlendirmesine bırakın.',
+  'sdk.title': 'C derleyicisi olan her şeyde gönderin, alın, karıştırın',
+  'sdk.text': 'Saat kaymasını yeniden örneklemeyle düzelten kilitsiz jitter tamponu, matris mikser, PING0 keşfi ve RT paketleri. Linux, Windows, macOS, Android, ESP32 ve Arduino’da çalışır.',
+  'sdk.comment': '// paket başına 64 kare: 48 kHz’de 1,33 ms ses',
+  'hub.title': 'Ses yönlendiren bir router',
+  'hub.text': 'LuCI’den çoğaltma, yeniden adlandırma ve ses seviyesi. tc eBPF hızlı yolu paketleri kernelin içinde iletir.',
+  'hub.meter': 'Saniyede 24 bin pakette router işlemci kullanımı',
+  'hub.user': 'Kullanıcı alanı',
+  'hub.ebpf': 'eBPF yolu',
+  'cards.tag': 'Ses kartları',
+  'cards.title': 'Sanal ses kartları',
+  'cards.text': 'Windows, macOS ve Linux’ta (ALSA ve PipeWire) “Sotto Out” ve “Sotto In”. Herhangi bir uygulamada seçin, ses ağ üzerinden gitsin.',
+  'android.title': 'Android, ek kod yazmadan',
+  'android.text': 'Dört ABI için 128 KB’lık bir kütüphane. read(), ses callback’inizi kopyalamadan ve bellek ayırmadan doğrudan jitter tamponundan doldurur.',
+  'sec.title': 'Gerektiğinde şifreli',
+  'sec.intro': 'Düz VBAN yerel ağdaki her pakete güvenir. Güvenli VBAN her cihaza kendi anahtarını ve router’ınızdaki bir sertifika otoritesinden (CA) alınmış bir sertifika verir. Sesi internet üzerinden, NAT arkasından da taşır.',
+  'sec.f1': '<b>Denetlenmiş kriptografi.</b> Değiştirilmeden eklenmiş Monocypher. Noise XX el sıkışması, her pakette ChaCha20-Poly1305.',
+  'sec.f2': '<b>Rotalar sertifikaya bağlı.</b> Sahte bir IP adresi hiçbir yere varamaz; bir cihazı iptal etmek oturumunu anında bitirir.',
+  'sec.f3': '<b>Voicemeeter çalışmaya devam eder.</b> Hub şifreyi çözüp düz alıcılara iletir; cihazları tek tek güvenli hale getirebilirsiniz.',
+  'sec.seq': 'Güvenli VBAN el sıkışması ve veri akışı',
+  'sec.device': 'Cihaz',
+  'sec.m1': 'geçici anahtar',
+  'sec.m2': 'hub sertifikası, şifreli',
+  'sec.m3': 'cihaz sertifikası, şifreli',
+  'sec.m4': 'VBAN paketinin tamamı, 44 bayt ek',
+  'sec.foot': 'Anahtarlar iki dakikada bir yenilenir. Tekrarlanan ve değiştirilmiş paketler atılır.',
+  'start.title': 'Bir tonla başlayın',
+  'start.intro': 'SDK’yı derleyin, bir terminalde test tonu çalın, diğerinde dinleyin. Çalışınca alıcının yerine Voicemeeter’ı ya da hub’ı koyun.',
+  'start.copy': 'Kopyala',
+  'start.copied': 'Kopyalandı',
+  'start.selected': 'Seçildi',
+  'start.c1': '# kodu alın',
+  'start.c2': '# 6980’i dinle ve ALSA ile çal',
+  'start.c3': '# ikinci terminalde: 440 Hz ton, paket başına 64 kare',
+  'start.g1t': 'Güvenli kullanım',
+  'start.g1': 'vban_cert; CA’yı, cihaz anahtarlarını ve sertifikaları üretir. Gönderip almak için --ca, --cert ve --key ekleyin.',
+  'start.g2t': 'Router’da',
+  'start.g2': 'deploy.sh hub’ı ve LuCI sayfasını kurar. Security sekmesi CA’yı oluşturur ve cihazları imzalar.',
+  'start.g3t': 'Ses kartı olarak',
+  'start.g3': 'Windows, macOS ve Linux’un her birinin kendi reposunda bir sürücüsü var. Çıkış olarak “Sotto Out”u seçin, VBAN göndermeye başlarsınız.',
+  'foot.a': 'Sotto. VBAN protokolünün bağımsız, açık kaynak bir uygulaması.',
+  'foot.b': 'VBAN ve Voicemeeter, VB-Audio Software’e aittir.',
+  'scope.packet': 'paket n'
+};
+var EN_EXTRA = { 'start.copied': 'Copied', 'start.selected': 'Selected', 'scope.packet': 'packet n' };
+
+var EN = {}, LANG = 'en';
+function t(k) { return LANG === 'tr' && TR[k] != null ? TR[k] : (EN[k] != null ? EN[k] : EN_EXTRA[k]); }
+(function () {
+  var nodes = document.querySelectorAll('[data-i18n]'), aria = document.querySelectorAll('[data-i18n-aria]');
+  var meta = document.querySelector('meta[name="description"]');
+  nodes.forEach(function (n) { EN[n.getAttribute('data-i18n')] = n.innerHTML; });
+  aria.forEach(function (n) { EN[n.getAttribute('data-i18n-aria')] = n.getAttribute('aria-label'); });
+  EN['meta.title'] = document.title; EN['meta.desc'] = meta ? meta.content : '';
+  function apply(l, remember) {
+    LANG = l === 'tr' ? 'tr' : 'en';
+    document.documentElement.lang = LANG;
+    nodes.forEach(function (n) { n.innerHTML = t(n.getAttribute('data-i18n')); });
+    aria.forEach(function (n) { n.setAttribute('aria-label', t(n.getAttribute('data-i18n-aria'))); });
+    document.title = t('meta.title'); if (meta) meta.content = t('meta.desc');
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === LANG)); });
+    if (remember) {
+      try { localStorage.setItem('sotto-lang', LANG); } catch (e) {}
+      try { var u = new URL(location.href); if (LANG === 'tr') u.searchParams.set('lang', 'tr'); else u.searchParams.delete('lang'); history.replaceState(null, '', u); } catch (e) {}
+    }
+    document.dispatchEvent(new Event('sotto-lang'));
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.getAttribute('data-lang'), true); });
+  });
+  var want = null;
+  try { want = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  if (!want) { try { want = localStorage.getItem('sotto-lang'); } catch (e) {} }
+  if (!want) want = /^tr\b/i.test(navigator.language || '') ? 'tr' : 'en';
+  apply(want, false);
+})();
+
 (function () {
   var cv = document.getElementById('scope');
   var ctx = cv.getContext('2d');
@@ -321,7 +448,7 @@ vban_tx_write_f32(&amp;tx, block, 64);</pre>
       ctx.stroke(); ctx.globalAlpha = 1;
     });
     ctx.fillStyle = '#9fb8af'; ctx.font = '12px ' + getComputedStyle(document.body).getPropertyValue('--font-mono');
-    ctx.fillText('packet n', hl + 8, top + 16);
+    ctx.fillText(t('scope.packet'), hl + 8, top + 16);
     if (!reduce) requestAnimationFrame(draw);
   }
   tokens(); size(); requestAnimationFrame(draw);
@@ -329,15 +456,18 @@ vban_tx_write_f32(&amp;tx, block, 64);</pre>
   var mq = window.matchMedia('(prefers-color-scheme: dark)');
   var retheme = function () { tokens(); if (reduce) requestAnimationFrame(draw); };
   if (mq.addEventListener) mq.addEventListener('change', retheme);
+  document.addEventListener('sotto-lang', retheme);
   new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   var btn = document.getElementById('copy'), pre = document.getElementById('cmds');
   btn.addEventListener('click', function () {
     var text = pre.innerText.split('\n').filter(function (l) { return l.indexOf('#') !== 0; })
       .map(function (l) { return l.replace(/^\$ /, ''); }).join('\n');
-    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
-    var fallback = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; };
+    var done = function () { btn.textContent = t('start.copied'); setTimeout(function () { btn.textContent = t('start.copy'); }, 1600); };
+    var fallback = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = t('start.selected'); };
     try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
   });
 })();
 </script>
+</body>
+</html>
