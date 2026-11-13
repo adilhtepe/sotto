@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/adilhtepe/sotto/main/brand/sotto-logo-dark.svg">
+    <img alt="Sotto" src="https://raw.githubusercontent.com/adilhtepe/sotto/main/brand/sotto-logo.svg" height="72">
+  </picture>
+</p>
+
 # Sotto
 
 **VBAN audio, sotto voce.** An open toolkit for the VBAN network audio protocol:
