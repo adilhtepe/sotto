@@ -1,0 +1,18 @@
+# The whole project checks out together: every submodule resolves and the SDK builds and tests.
+# Each component repository runs its own full build (Windows driver, macOS plug-in, kernel...).
+name: ci
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  together:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: git submodule status --recursive
+      - run: |
+          cmake -S sdk -B build -DCMAKE_BUILD_TYPE=Release -DVBAN_WERROR=ON
+          cmake --build build --parallel
+          ctest --test-dir build --output-on-failure

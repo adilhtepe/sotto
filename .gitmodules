@@ -1,0 +1,21 @@
+[submodule "sdk"]
+	path = sdk
+	url = ../sotto-sdk.git
+[submodule "app"]
+	path = app
+	url = ../sotto-app.git
+[submodule "linux"]
+	path = linux
+	url = ../sotto-linux.git
+[submodule "windows"]
+	path = windows
+	url = ../sotto-windows.git
+[submodule "macos"]
+	path = macos
+	url = ../sotto-macos.git
+[submodule "android"]
+	path = android
+	url = ../sotto-android.git
+[submodule "hub"]
+	path = hub
+	url = ../sotto-hub.git
